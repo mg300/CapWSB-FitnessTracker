@@ -1,5 +1,7 @@
 package pl.wsb.fitnesstracker.training.api;
 
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import pl.wsb.fitnesstracker.training.internal.ActivityType;
 import pl.wsb.fitnesstracker.user.api.User;
@@ -11,6 +13,8 @@ public class Training {
 
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     private Date startTime;
