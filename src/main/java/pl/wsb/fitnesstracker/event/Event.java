@@ -2,26 +2,24 @@ package pl.wsb.fitnesstracker.event;
 
 import jakarta.persistence.*;
 import lombok.*;
-import pl.wsb.fitnesstracker.user.api.User;
+
+import java.time.LocalDateTime;
 
 // TODO: Define the Event entity with appropriate fields and annotations
 @Entity
-@Table(name = "user_event")
+@Table(name = "event")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
-class Event {
+public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "event_id")
-    private Event event;
-
-    private String status;
+    private String name;
+    private String description;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private String country;
+    private String city;
 }

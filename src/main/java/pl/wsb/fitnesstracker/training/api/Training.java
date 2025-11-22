@@ -1,18 +1,21 @@
 package pl.wsb.fitnesstracker.training.api;
 
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import lombok.Getter;
+import jakarta.persistence.*;
+import lombok.*;
 import pl.wsb.fitnesstracker.training.internal.ActivityType;
 import pl.wsb.fitnesstracker.user.api.User;
 
 import java.util.Date;
 
+@Entity
+@Table(name = "trainings")
 @Getter
-public class Training {
-
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ToString
+public class Training{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
