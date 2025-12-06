@@ -18,7 +18,7 @@ public class WorkoutSession {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "training_id")
     private Training trainingId;
     private String timestamp;
