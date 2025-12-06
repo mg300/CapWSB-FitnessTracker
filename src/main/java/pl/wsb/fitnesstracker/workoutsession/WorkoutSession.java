@@ -4,27 +4,40 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import pl.wsb.fitnesstracker.training.api.Training;
 
-// TODO: Define the Event entity with appropriate fields and annotations
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "workout_session")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString
 public class WorkoutSession {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
-    @JoinColumn(name = "training_id")
-    private Training trainingId;
-    private String timestamp;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "training_id", nullable = false)
+    private Training training;
+
+    @Column(name = "timestamp", nullable = false)
+    private LocalDateTime timestamp;
+
+    @Column(name = "start_latitude", nullable = false)
     private double startLatitude;
+
+    @Column(name = "start_longitude", nullable = false)
     private double startLongitude;
-    private double endLatitude;
-    private double endLongitude;
-    private double altitude;
+
+    @Column(name = "end_latitude")
+    private Double endLatitude;
+
+    @Column(name = "end_longitude")
+    private Double endLongitude;
+
+    @Column(name = "altitude")
+    private Double altitude;
+
 }
